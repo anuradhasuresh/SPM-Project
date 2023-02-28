@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0KJGJymvPCb7KglAVv2k8rn/Orwbg51rIBXEplbLT0NlX4JMKp23Kd+eTdCQjaSnMmAl1A09Ut/rGSeMnWbn+w==",
+  "success": true,
+  "projectFilePath": "/Users/anuradhasuresh/Desktop/College/Sem II/Project Management/Project/SPM-Project/CalorieCounter/CalorieCounter/CalorieCounterAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/anuradhasuresh/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/anuradhasuresh/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/anuradhasuresh/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/anuradhasuresh/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/anuradhasuresh/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/anuradhasuresh/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

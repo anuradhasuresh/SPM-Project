@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{04032617-B8E7-41D8-BEF5-F21D3E349789}|CalorieCounter">
+  <MonoDevelop.Ide.ItemProperties.CalorieCounterAPI PreferredExecutionTarget="/Applications/Safari.app" FirstBuild="True" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CalorieCounter" expanded="True">
+            <Node name="CalorieCounterAPI" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
