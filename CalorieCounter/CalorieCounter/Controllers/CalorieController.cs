@@ -48,9 +48,28 @@ namespace CalorieCounterAPI.Controllers
                 return BadRequest("Item not added");
         }
 
-        // Delete item
+        //Updates or edits an item 
+        [HttpPut()]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
 
-        [HttpGet]
+        public IActionResult UpdateItem([FromBody] CalorieClass item)
+        {
+            _logger.Log(LogLevel.Information, "Update an item");
+            if (item == null)
+                return BadRequest("Item is null");
+
+            bool isUpdated = _calorieRepository.UpdateItem(item);
+
+            if (!isUpdated)
+                return NotFound("No matching item");
+            else
+                return Ok("Successfully updated");
+        }
+
+        // Delete item
+        [HttpDelete]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
 

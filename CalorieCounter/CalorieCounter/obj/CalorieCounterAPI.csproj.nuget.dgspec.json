@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SPM project\\SPM-Project\\CalorieCounter\\CalorieCounter\\CalorieCounterAPI.csproj": {}
+    "/Users/anuradhasuresh/Desktop/College/Sem II/Project Management/Project/SPM-Project/CalorieCounter/CalorieCounter/CalorieCounterAPI.csproj": {}
   },
   "projects": {
-    "D:\\SPM project\\SPM-Project\\CalorieCounter\\CalorieCounter\\CalorieCounterAPI.csproj": {
+    "/Users/anuradhasuresh/Desktop/College/Sem II/Project Management/Project/SPM-Project/CalorieCounter/CalorieCounter/CalorieCounterAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SPM project\\SPM-Project\\CalorieCounter\\CalorieCounter\\CalorieCounterAPI.csproj",
+        "projectUniqueName": "/Users/anuradhasuresh/Desktop/College/Sem II/Project Management/Project/SPM-Project/CalorieCounter/CalorieCounter/CalorieCounterAPI.csproj",
         "projectName": "CalorieCounter",
-        "projectPath": "D:\\SPM project\\SPM-Project\\CalorieCounter\\CalorieCounter\\CalorieCounterAPI.csproj",
-        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-        "outputPath": "D:\\SPM project\\SPM-Project\\CalorieCounter\\CalorieCounter\\obj\\",
+        "projectPath": "/Users/anuradhasuresh/Desktop/College/Sem II/Project Management/Project/SPM-Project/CalorieCounter/CalorieCounter/CalorieCounterAPI.csproj",
+        "packagesPath": "/Users/anuradhasuresh/.nuget/packages/",
+        "outputPath": "/Users/anuradhasuresh/Desktop/College/Sem II/Project Management/Project/SPM-Project/CalorieCounter/CalorieCounter/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/anuradhasuresh/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -92,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }

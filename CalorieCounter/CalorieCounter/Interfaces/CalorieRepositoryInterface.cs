@@ -13,8 +13,8 @@ namespace CalorieCounterAPI.Interfaces
         //CalorieClass GetItem(int id);
         //bool ItemExists(int id);
         bool CreateItem(CalorieClass item);
-        //bool UpdateItem(CalorieClass item);
-        //bool DeleteItem(int id);
+        bool UpdateItem(CalorieClass item);
+        bool DeleteItem(int id);
         //Dictionary<string, dynamic> GetAnalysis();
         bool Save();
         

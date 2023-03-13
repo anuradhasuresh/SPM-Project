@@ -42,7 +42,28 @@ namespace CalorieCounterAPI.Repositories
             _context.Add(item);
             return Save();
         }
-
+        /// <summary>
+        /// updates or edits an item in the database
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>true if the item has been updated and false if not</returns>
+        public bool UpdateItem(CalorieClass item)
+        {
+            _context.Update(item);
+            return Save();
+        }
+        /// <summary>
+        /// deletes an item in the database
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>true if the item has been deleted and false if not</returns>
+        public bool DeleteItem(int itemId)
+        {
+            //throw new NotImplementedException();
+            //_context.Remove(GetItems().FirstOrDefault(a => a.Id == itemId));
+            _context.Remove(_context.Calorie.Where(a => a.Id == itemId).FirstOrDefault());
+            return Save();
+        }
         /// <summary>
         /// Function to save changes made to the database
         /// </summary>
@@ -52,16 +73,7 @@ namespace CalorieCounterAPI.Repositories
             int saved = _context.SaveChanges();
             return saved == 1;
         }
-        public bool DeleteItem(int itemId)
-        {
-            throw new NotImplementedException();
-            _context.Remove(GetItems().FirstOrDefault(a => a.Id == itemId));
-        }
         #endregion
-
-
-
-
     }
 }
 
