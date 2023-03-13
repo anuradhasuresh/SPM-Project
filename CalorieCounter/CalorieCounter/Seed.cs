@@ -7,6 +7,9 @@ using CalorieCounterAPI.Interfaces;
 
 namespace CalorieCounterAPI
 {
+    /// <summary>
+    /// class to provide initial DB context
+    /// </summary>
     public class Seed
     {
         private readonly DataContext dataContext;

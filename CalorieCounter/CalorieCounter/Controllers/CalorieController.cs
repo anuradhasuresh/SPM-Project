@@ -7,6 +7,9 @@ using CalorieCounterAPI.Interfaces;
 
 namespace CalorieCounterAPI.Controllers
 {
+    /// <summary>
+    /// controller class for CRUD operations
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class CalorieController : ControllerBase
@@ -20,7 +23,10 @@ namespace CalorieCounterAPI.Controllers
             _calorieRepository = calorieRepository;
 
         }
-        //Gets all Items
+        /// <summary>
+        /// API call to get/ display all records in DB
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetAllItems")]
         [ProducesResponseType(200, Type = typeof(List<CalorieClass>))]
         public IActionResult GetItems()
@@ -47,7 +53,20 @@ namespace CalorieCounterAPI.Controllers
             else
                 return BadRequest("Item not added");
         }
+        //Gets a particular Item based on Id
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(CalorieClass))]
+        [ProducesResponseType(400)]
+        public IActionResult GetItem(int id)
+        {
+            _logger.Log(LogLevel.Information, "Get a particular item");
+            CalorieClass item = _calorieRepository.GetItem(id);
 
+            if (item == null)
+                return NotFound();
+            else
+                return Ok(item);
+        }
         //Updates or edits an item 
         [HttpPut()]
         [ProducesResponseType(400)]

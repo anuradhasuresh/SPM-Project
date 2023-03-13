@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalorieCounterAPI.Data
 {
+    /// <summary>
+    /// provides MySQL DB connection and context
+    /// </summary>
     public class DataContext : DbContext
     {
         protected readonly IConfiguration Configuration;

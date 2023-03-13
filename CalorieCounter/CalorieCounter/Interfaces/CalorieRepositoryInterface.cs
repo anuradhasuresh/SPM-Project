@@ -7,6 +7,9 @@ using CalorieCounterAPI.Interfaces;
 
 namespace CalorieCounterAPI.Interfaces
 {
+    /// <summary>
+    /// provides an interface to the repository with methods for CRUD operations
+    /// </summary>
 	public interface ICalorieRepository
     {
         ICollection<CalorieClass> GetItems();
