@@ -52,9 +52,16 @@ namespace CalorieCounterAPI.Repositories
             int saved = _context.SaveChanges();
             return saved == 1;
         }
+        public bool DeleteItem(int itemId)
+        {
+            throw new NotImplementedException();
+            _context.Remove(GetItems().FirstOrDefault(a => a.Id == itemId));
+        }
         #endregion
 
-     
+
+
+
     }
 }
 

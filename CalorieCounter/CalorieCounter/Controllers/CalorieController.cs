@@ -47,7 +47,27 @@ namespace CalorieCounterAPI.Controllers
             else
                 return BadRequest("Item not added");
         }
-        
+
+        // Delete item
+
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+
+        public IActionResult DeleteItem(int itemId)
+        {
+            _logger.Log(LogLevel.Information, "Deleted Item");
+            if (itemId == 0)
+                return BadRequest("ItemId is null");
+
+            bool result = _calorieRepository.DeleteItem(itemId);
+
+            if (result)
+                return Ok("Successfully deleted");
+            else
+                return BadRequest("Item not deleted");
+        }
+
     }
 
 }
