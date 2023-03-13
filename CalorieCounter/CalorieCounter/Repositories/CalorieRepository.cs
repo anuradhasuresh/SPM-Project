@@ -59,9 +59,7 @@ namespace CalorieCounterAPI.Repositories
         /// <returns>true if the item has been deleted and false if not</returns>
         public bool DeleteItem(int itemId)
         {
-            //throw new NotImplementedException();
-            //_context.Remove(GetItems().FirstOrDefault(a => a.Id == itemId));
-            _context.Remove(_context.Calorie.Where(a => a.Id == itemId).FirstOrDefault());
+            _context.Remove(GetItems().FirstOrDefault(a => a.Id == itemId));
             return Save();
         }
         /// <summary>
