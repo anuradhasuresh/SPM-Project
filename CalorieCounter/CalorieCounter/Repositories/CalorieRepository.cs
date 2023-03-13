@@ -43,6 +43,15 @@ namespace CalorieCounterAPI.Repositories
             return Save();
         }
         /// <summary>
+        /// Function to get a particular item from the MySQL database based on an ID entered by the user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Details of that item with that particular ID</returns>
+        public CalorieClass GetItem(int id)
+        {
+            return _context.Calorie.Where(item => item.Id == id).FirstOrDefault();
+        }
+        /// <summary>
         /// updates or edits an item in the database
         /// </summary>
         /// <param name="item"></param>
