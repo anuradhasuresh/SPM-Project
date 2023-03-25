@@ -14,6 +14,7 @@ namespace CalorieCounterAPI.Controllers
     [Route("[controller]")]
     public class CalorieController : ControllerBase
     {
+        static double AvgCalorie = 3.5;
         private readonly ILogger<CalorieController> _logger;
         private readonly ICalorieRepository _calorieRepository;
 
@@ -106,6 +107,36 @@ namespace CalorieCounterAPI.Controllers
                 return BadRequest("Item not deleted");
         }
 
-    }
+		[HttpGet("/Analysis/{name}")]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		public IActionResult GetAvgcaloriebyname(string name)
+		{
+
+
+			//return Ok(_calorieRepository.GetItems().Where(temp => temp.Name.ToLower() == name.ToLower()).Average(x => x.CalorieCount));
+			ICollection<CalorieClass> items = _calorieRepository.GetItems();
+			double avg = items
+				.Skip(Math.Max(0, items.Count() - 5))
+				.Where(temp => temp.Name.ToLower() == name.ToLower())
+				.Average(x => x.CalorieCount);
+
+			double diff = AvgCalorie - avg;
+			string result = "Average Calorie: " + AvgCalorie + "\nYour Average: " + avg + "\n";
+
+			if (diff > 0)
+			{
+				result += "You took " + Math.Round(Math.Abs(diff), 2) + " calories less than the average human.";
+			}
+			else
+			{
+				result += "You took " + Math.Round(Math.Abs(diff), 2) + " calories more than the average human.";
+			}
+
+
+			return Ok(result);
+		}
+
+	}
 
 }
