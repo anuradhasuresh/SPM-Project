@@ -117,7 +117,7 @@ namespace CalorieCounterAPI.Controllers
 			//return Ok(_calorieRepository.GetItems().Where(temp => temp.Name.ToLower() == name.ToLower()).Average(x => x.CalorieCount));
 			ICollection<CalorieClass> items = _calorieRepository.GetItems();
 			double avg = items
-				.Skip(Math.Max(0, items.Count() - 5))
+				//.Skip(Math.Max(0, items.Count() - 5))
 				.Where(temp => temp.Name.ToLower() == name.ToLower())
 				.Average(x => x.CalorieCount);
 
