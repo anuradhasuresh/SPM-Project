@@ -12,4 +12,12 @@ public class CalorieClass
     public int Age { get; set; }
 
     public int CalorieCount { get; set; }
+	
+	public int CurrentIntake { get; set; }
+	
+    public int GoalIntake { get; set; }
+
+    public String WeightClass { get; set; } = String.Empty;
+	
+	
 }
