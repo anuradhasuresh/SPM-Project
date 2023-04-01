@@ -14,6 +14,4 @@ public class CalorieClass
     public int CurrentCalorieIntake { get; set; }
 
     public String Gender { get; set; } = String.Empty;
-
-    public int GoalIntake { get; set; }
 }
