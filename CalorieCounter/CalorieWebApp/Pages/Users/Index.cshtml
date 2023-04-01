@@ -1,0 +1,43 @@
+﻿@*Razor Page to display all records from the DB*@
+
+@page
+@model CalorieWebApp.Pages.Users.IndexModel
+@{
+}
+
+<br>
+<h2>List of User Entries</h2>
+
+<a class="btn btn-primary btm-sm" href="/Users/Add">Add New Entry</a>
+<a class="btn btn-primary btm-sm" href="/Users/Analysis">Analysis</a>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Calorie Intake</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Age</td>
+                <td>@user.Gender</td>
+                <td>@user.CurrentCalorieIntake</td>
+
+                <td>
+                    <a class="btn btn-primary btm-sm" href="/Items/Edit?id=@user.Id">Edit</a>
+                    <a class="btn btn-danger btm-sm" href="/Items/Delete?id=@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
