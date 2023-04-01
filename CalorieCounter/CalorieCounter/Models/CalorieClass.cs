@@ -11,5 +11,9 @@ public class CalorieClass
 
     public int Age { get; set; }
 
-    public int CalorieCount { get; set; }
+    public int CurrentCalorieIntake { get; set; }
+
+    public String Gender { get; set; } = String.Empty;
+
+    public int GoalIntake { get; set; }
 }

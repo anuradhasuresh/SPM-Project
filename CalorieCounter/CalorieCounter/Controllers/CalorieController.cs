@@ -112,29 +112,171 @@ namespace CalorieCounterAPI.Controllers
 		[ProducesResponseType(400)]
 		public IActionResult GetAvgcaloriebyname(string name)
 		{
-
-
-			//return Ok(_calorieRepository.GetItems().Where(temp => temp.Name.ToLower() == name.ToLower()).Average(x => x.CalorieCount));
-			ICollection<CalorieClass> items = _calorieRepository.GetItems();
+            // return Ok(_calorieRepository.GetAnalysis());
+            ICollection<CalorieClass> items = _calorieRepository.GetItems();
 			double avg = items
 				//.Skip(Math.Max(0, items.Count() - 5))
 				.Where(temp => temp.Name.ToLower() == name.ToLower())
-				.Average(x => x.CalorieCount);
+				.Average(x => x.CurrentCalorieIntake);
+            double avgCalorie = items
+                .Average(x => x.CurrentCalorieIntake);
+            int currentIntake = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.CurrentCalorieIntake)
+                .FirstOrDefault();
+            string gender = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Gender)
+                .FirstOrDefault();
+            int age = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Age)
+                .FirstOrDefault();
 
-			double diff = AvgCalorie - avg;
-			string result = "Average Calorie: " + AvgCalorie + "\nYour Average: " + avg + "\n";
+            int goalIntake;
+            string result = "Average Calorie: " + avgCalorie + "\nYour Average: " + avg + "\n";
 
-			if (diff > 0)
-			{
-				result += "You took " + Math.Round(Math.Abs(diff), 2) + " calories less than the average human.";
-			}
-			else
-			{
-				result += "You took " + Math.Round(Math.Abs(diff), 2) + " calories more than the average human.";
-			}
+            if (Enumerable.Range(9, 13).Contains(age))
+            {
+                switch (gender)
+                {
+                    case "M":
+                        {
+                            goalIntake = 1800;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
 
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
 
-			return Ok(result);
+                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                    case "F":
+                        {
+                            goalIntake = 1500;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                }
+            }
+            else if (Enumerable.Range(14, 18).Contains(age))
+            {
+                switch (gender)
+                {
+                    case "M":
+                        {
+                            goalIntake = 2200;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                    case "F":
+                        {
+                            goalIntake = 1800;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                }
+            }
+            else if (Enumerable.Range(19, 30).Contains(age))
+            {
+                switch (gender)
+                {
+                    case "M":
+                        {
+                            goalIntake = 2500;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                    case "F":
+                        {
+                            goalIntake = 2000;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                }
+            }
+            else if (Enumerable.Range(31, 50).Contains(age))
+            {
+                switch (gender)
+                {
+                    case "M":
+                        {
+                            goalIntake = 2300;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                    case "F":
+                        {
+                            goalIntake = 1800;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                switch (gender)
+                {
+                    case "M":
+                        {
+                            goalIntake = 2100;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                    case "F":
+                        {
+                            goalIntake = 1600;
+                            if (currentIntake < goalIntake)
+                                result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+
+                            else
+                                result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
+                            break;
+                        }
+                }
+            }
+            return Ok(result);
 		}
 
 	}
