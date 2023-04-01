@@ -27,7 +27,7 @@ namespace CalorieCounterAPI.Controllers
         /// <summary>
         /// API call to get/ display all records in DB
         /// </summary>
-        /// <returns></returns>
+        /// <returns>list of items</returns>
         [HttpGet("GetAllItems")]
         [ProducesResponseType(200, Type = typeof(List<CalorieClass>))]
         public IActionResult GetItems()
@@ -36,7 +36,11 @@ namespace CalorieCounterAPI.Controllers
             return Ok(_calorieRepository.GetItems());
         }
    
-        //Adds an item
+        /// <summary>
+        /// Adds an item to the DB
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>response message with success or error</returns>
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -54,7 +58,11 @@ namespace CalorieCounterAPI.Controllers
             else
                 return BadRequest("Item not added");
         }
-        //Gets a particular Item based on Id
+        /// <summary>
+        /// Gets a particular Item based on Id from the DB
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>item</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(CalorieClass))]
         [ProducesResponseType(400)]
@@ -68,7 +76,11 @@ namespace CalorieCounterAPI.Controllers
             else
                 return Ok(item);
         }
-        //Updates or edits an item 
+        /// <summary>
+        /// Updates or edits an existing item in the DB
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>success or error message</returns>        
         [HttpPut()]
         [ProducesResponseType(400)]
         [ProducesResponseType(200)]
@@ -87,8 +99,11 @@ namespace CalorieCounterAPI.Controllers
             else
                 return Ok("Successfully updated");
         }
-
-        // Delete item
+        /// <summary>
+        /// Deletes an existing item in the DB
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns>success or error message</returns>
         [HttpDelete]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -106,37 +121,17 @@ namespace CalorieCounterAPI.Controllers
             else
                 return BadRequest("Item not deleted");
         }
-
+        /// <summary>
+        /// Perform analysis based on the name entered
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>analysis</returns>
 		[HttpGet("/Analysis/{name}")]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		public IActionResult GetAvgcaloriebyname(string name)
+		public IActionResult GetAnalysis(string name)
 		{
-
-
-			//return Ok(_calorieRepository.GetItems().Where(temp => temp.Name.ToLower() == name.ToLower()).Average(x => x.CalorieCount));
-			ICollection<CalorieClass> items = _calorieRepository.GetItems();
-			double avg = items
-				//.Skip(Math.Max(0, items.Count() - 5))
-				.Where(temp => temp.Name.ToLower() == name.ToLower())
-				.Average(x => x.CalorieCount);
-
-			double diff = AvgCalorie - avg;
-			string result = "Average Calorie: " + AvgCalorie + "\nYour Average: " + avg + "\n";
-
-			if (diff > 0)
-			{
-				result += "You took " + Math.Round(Math.Abs(diff), 2) + " calories less than the average human.";
-			}
-			else
-			{
-				result += "You took " + Math.Round(Math.Abs(diff), 2) + " calories more than the average human.";
-			}
-
-
-			return Ok(result);
+             return Ok(_calorieRepository.GetAnalysis(name));
 		}
-
 	}
-
 }

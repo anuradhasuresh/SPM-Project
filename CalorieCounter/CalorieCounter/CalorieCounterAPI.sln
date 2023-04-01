@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1704.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieCounterAPI", "CalorieCounterAPI.csproj", "{6970119C-E473-4606-9A40-15DBA9094747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalorieWebApp", "..\CalorieWebApp\CalorieWebApp.csproj", "{CBE7EE5D-80E4-496E-91E2-211CB9C32797}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6970119C-E473-4606-9A40-15DBA9094747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6970119C-E473-4606-9A40-15DBA9094747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6970119C-E473-4606-9A40-15DBA9094747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE7EE5D-80E4-496E-91E2-211CB9C32797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE7EE5D-80E4-496E-91E2-211CB9C32797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE7EE5D-80E4-496E-91E2-211CB9C32797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE7EE5D-80E4-496E-91E2-211CB9C32797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

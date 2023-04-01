@@ -20,7 +20,7 @@ namespace CalorieCounterAPI.Interfaces
         bool DeleteItem(int id);
 
         CalorieClass GetItem(int id);
-        //Dictionary<string, dynamic> GetAnalysis();
+        string GetAnalysis(string name);
         bool Save();
         
 	}
