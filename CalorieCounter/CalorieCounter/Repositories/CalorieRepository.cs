@@ -86,10 +86,9 @@ namespace CalorieCounterAPI.Repositories
         {
             ICollection<CalorieClass> items = _context.Calorie.ToList();
             double avg = items
-                //.Skip(Math.Max(0, items.Count() - 5))
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Average(x => x.CurrentCalorieIntake);
-            double avgCalorie = items
+            double avgCalories = items
                 .Average(x => x.CurrentCalorieIntake);
             int currentIntake = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
@@ -105,7 +104,7 @@ namespace CalorieCounterAPI.Repositories
                 .FirstOrDefault();
 
             int goalIntake;
-            string result = "Average Calorie: " + avgCalorie + "\nYour Average: " + avg + "\n";
+            string result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avg, 2) + "\n \n";
 
             if (Enumerable.Range(9, 13).Contains(age))
             {
@@ -119,8 +118,6 @@ namespace CalorieCounterAPI.Repositories
 
                             else
                                 result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
-
-                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
                             break;
                         }
                     case "F":
@@ -147,8 +144,6 @@ namespace CalorieCounterAPI.Repositories
 
                             else
                                 result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
-
-                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
                             break;
                         }
                     case "F":
@@ -175,8 +170,6 @@ namespace CalorieCounterAPI.Repositories
 
                             else
                                 result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
-
-                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
                             break;
                         }
                     case "F":
@@ -203,8 +196,6 @@ namespace CalorieCounterAPI.Repositories
 
                             else
                                 result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
-
-                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
                             break;
                         }
                     case "F":
@@ -231,8 +222,6 @@ namespace CalorieCounterAPI.Repositories
 
                             else
                                 result += "Your current calorie intake is " + (currentIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
-
-                            result += "Your current calorie intake is " + (goalIntake - currentIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. ";
                             break;
                         }
                     case "F":
