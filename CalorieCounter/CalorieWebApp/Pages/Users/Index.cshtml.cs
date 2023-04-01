@@ -10,7 +10,7 @@ using CalorieCounterAPI;
 
 namespace CalorieWebApp.Pages.Users;
 /// <summary>
-/// Class to provide functionality to get all items in the Items Page
+/// Class to provide functionality to display all records in the Index Page
 /// </summary>
 public class IndexModel : PageModel
 {
@@ -22,7 +22,7 @@ public class IndexModel : PageModel
     {
         using (var client = new HttpClient())
         {
-            client.BaseAddress = new Uri("http://localhost:5215"); //TODO
+            client.BaseAddress = new Uri("http://localhost:5215"); 
             //HTTP GET
             var responseTask = client.GetAsync("Calorie/GetAllItems");
             responseTask.Wait();
