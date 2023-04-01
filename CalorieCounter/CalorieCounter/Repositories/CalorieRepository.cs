@@ -225,12 +225,12 @@ namespace CalorieCounterAPI.Repositories
             if (currentIntake < goalIntake)
             {
                 Console.WriteLine("entered here");
-                result += "Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - currentIntake);
+                result += "Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake);
             }
             else
             {
                 Console.WriteLine("entered here");
-                result += "Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to lose weight, then you should decrease your calorie intake by " + (currentIntake - goalIntake);
+                result += "Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to lose weight, then you should decrease your calorie intake by " + (avgIntake - goalIntake);
             }
             return result;
         }
