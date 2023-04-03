@@ -2,3 +2,40 @@
 @{
 }
 
+
+@model YourNamespace.Pages.AnalysisModel
+
+<h1>@Model.AnalysisResult</h1>
+
+<div class="analysis-details">
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Age:</strong> @Model.Age</p>
+    <p><strong>Gender:</strong> @Model.Gender</p>
+    <p><strong>Current Calorie Intake:</strong> @Model.CurrentIntake</p>
+</div>
+
+<style>
+    h1 {
+        font-size: 3rem;
+        color: #333;
+        margin-bottom: 2rem;
+    }
+
+    .analysis-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+        border: 1px solid #ddd;
+        padding: 1rem;
+    }
+
+    .analysis-details p {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .analysis-details strong {
+        font-weight: bold;
+    }
+</style>
