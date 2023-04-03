@@ -88,9 +88,11 @@ namespace CalorieCounterAPI.Repositories
         /// </summary>
         /// <param name="name"></param>
         /// <returns>Message with analysis</returns>
-        public string GetAnalysis(string name)
+        public List<string> GetAnalysis(string name)
         {
             ICollection<CalorieClass> items = _context.Calorie.ToList();
+
+            var dataAnalysis = new List<string>();
             // variables to get values of average, total average, current intake, gender, age, goal/ standard intake and result message
             double avgIntake = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
@@ -204,7 +206,8 @@ namespace CalorieCounterAPI.Repositories
                         }
                 }
             }
-            return result;
+            dataAnalysis.AddRange(result.Split('\n'));
+            return dataAnalysis;
         }
         #endregion
         #region helper methods
@@ -219,8 +222,9 @@ namespace CalorieCounterAPI.Repositories
         /// <returns>message with analysis text</returns>
         public string printMessage(string result, int goalIntake, int currentIntake, double avgCalories, double avgIntake)
         {
-            result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".";
 
+            result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".\n";
+            
             if (currentIntake < goalIntake)
             {
                 result += "\n Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake) + ".";
@@ -229,6 +233,7 @@ namespace CalorieCounterAPI.Repositories
             {
                 result += "\n Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to lose weight, then you should decrease your calorie intake by " + (avgIntake - goalIntake) + ".";
             }
+            
             return result;
         }
         #endregion

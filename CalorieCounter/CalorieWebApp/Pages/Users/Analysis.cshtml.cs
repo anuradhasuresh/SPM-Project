@@ -19,7 +19,7 @@ namespace CalorieWebApp.Pages.Users;
 public class AnalysisModel : PageModel
 {
     public CalorieClass user = new();
-    public string DataAnalysis = "";
+    public List<string> DataAnalysis = new List<string>();
     public string errorMessage = "";
     public string successMessage = "";
     /// <summary>
@@ -43,15 +43,8 @@ public class AnalysisModel : PageModel
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var DataAnalysis = await result.Content.ReadAsStringAsync();
-                    //DataAnalysis = JsonConvert.DeserializeObject<String>(readTask);
-                    //DataAnalysis = readTask;
-                    //Console.WriteLine(DataAnalysis);
-                    //DataAnalysis.Replace(".",".</p><p>");
-                    //successMessage = "Successfully fetched analysis";
-                    //Console.WriteLine("Modified Data Analysis");
-                    //Console.WriteLine(DataAnalysis);
-                    //RedirectToPage("/Users/Index");
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    DataAnalysis = JsonConvert.DeserializeObject<List<string>>(readTask);
                 }
                 else
                     errorMessage = "Error in fetching analysis";

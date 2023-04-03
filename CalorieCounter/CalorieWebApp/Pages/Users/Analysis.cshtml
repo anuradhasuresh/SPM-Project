@@ -23,12 +23,13 @@
     <input type="submit" value="Get Analysis" class="btn btn-primary" />
 </form>
 
-@if (Model.DataAnalysis.Length > 0)
+@if (@Model.DataAnalysis.Count > 0)
 {
     <h2>Analysis</h2>
     <br />
-    <div id="analysis">@Model.DataAnalysis</div>
-
+    @foreach(var line in @Model.DataAnalysis){
+        <div id="analysis"> @line </div>
+    }
 }
 
 @*<script>function displayAlert() {
