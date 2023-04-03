@@ -1,7 +1,7 @@
 namespace CalorieCounterAPI.Models;
 
 /// <summary>
-/// Calorie Class with 4 fields - Id, Name, Age and Calorie Count
+/// Calorie Class with 5 fields - Id, Name, Age, Gender and Calorie Count
 /// </summary>
 public class CalorieClass
 {

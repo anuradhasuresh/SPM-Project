@@ -14,7 +14,6 @@ namespace CalorieCounterAPI.Controllers
     [Route("[controller]")]
     public class CalorieController : ControllerBase
     {
-        static double AvgCalorie = 3.5;
         private readonly ILogger<CalorieController> _logger;
         private readonly ICalorieRepository _calorieRepository;
 
@@ -104,17 +103,17 @@ namespace CalorieCounterAPI.Controllers
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns>success or error message</returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
 
-        public IActionResult DeleteItem(int itemId)
+        public IActionResult DeleteItem(int id)
         {
             _logger.Log(LogLevel.Information, "Deleted Item");
-            if (itemId == 0)
+            if (id == 0)
                 return BadRequest("ItemId is null");
 
-            bool result = _calorieRepository.DeleteItem(itemId);
+            bool result = _calorieRepository.DeleteItem(id);
 
             if (result)
                 return Ok("Successfully deleted");
