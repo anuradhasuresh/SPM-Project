@@ -46,7 +46,6 @@ namespace CalorieWebApp.Pages.Users
         /// </summary>
         public async Task<IActionResult> OnPost()
         {
-
             string id = Request.Query["id"];
 
             using (var client = new HttpClient())

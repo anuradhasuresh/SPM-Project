@@ -49,7 +49,6 @@ public class CreateModel : PageModel
                 if (!result.IsSuccessStatusCode)
                     errorMessage = "Error adding";
                 else
-
                     successMessage = "Successfully added";
             }
         }
