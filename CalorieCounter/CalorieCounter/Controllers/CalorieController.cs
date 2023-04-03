@@ -14,7 +14,6 @@ namespace CalorieCounterAPI.Controllers
     [Route("[controller]")]
     public class CalorieController : ControllerBase
     {
-        static double AvgCalorie = 3.5;
         private readonly ILogger<CalorieController> _logger;
         private readonly ICalorieRepository _calorieRepository;
 

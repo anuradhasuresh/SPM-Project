@@ -9,12 +9,14 @@ using CalorieCounterAPI.Data;
 using CalorieCounterAPI;
 
 namespace CalorieWebApp.Pages.Users;
+
 /// <summary>
 /// Class to provide functionality to display all records in the Index Page
 /// </summary>
 public class IndexModel : PageModel
 {
     public List<CalorieClass> Users = new();
+
     /// <summary>
     /// Performs a HTTP Get Call
     /// </summary>
@@ -23,7 +25,7 @@ public class IndexModel : PageModel
         using (var client = new HttpClient())
         {
             client.BaseAddress = new Uri("http://localhost:5215"); 
-            //HTTP GET
+            // HTTP GET
             var responseTask = client.GetAsync("Calorie/GetAllItems");
             responseTask.Wait();
 

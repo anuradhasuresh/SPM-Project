@@ -1,4 +1,46 @@
-﻿@page
+﻿@*Razor Page to edit a record from the DB*@
+
+@page
+@model CalorieWebApp.Pages.Users.EditModel
 @{
 }
 
+<br>
+<h2>Edit User Details</h2>
+
+<a class="btn btn-primary btm-sm" href="/Users/Index">Display All User Entries</a>
+<a class="btn btn-primary btm-sm" href="/Users/Add">Add New Entry</a>
+<a class="btn btn-primary btm-sm" href="/Users/Analysis">Analysis</a>
+
+@if (@Model.errorMessage.Length > 0)
+{
+    <div>Model.errorMessage</div>
+}
+<form method="POST">
+    <input type="hidden" name="id" value="@Model.user.Id" />
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" value="@Model.user.Name"></td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td><input type="text" name="age" value="@Model.user.Age"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" name="gender" value="@Model.user.Gender"></td>
+        </tr>
+        <tr>
+            <td>Current Calorie Intake</td>
+            <td><input type="text" name="currentCalorieIntake" value="@Model.user.CurrentCalorieIntake"></td>
+        </tr>
+    </table>
+    <p></p>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div>Model.errorMessage</div>
+    }
+    <input type="submit" value="Edit" class="btn btn-primary" />
+</form>
