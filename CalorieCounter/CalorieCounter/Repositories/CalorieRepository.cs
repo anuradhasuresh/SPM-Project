@@ -219,18 +219,15 @@ namespace CalorieCounterAPI.Repositories
         /// <returns>message with analysis text</returns>
         public string printMessage(string result, int goalIntake, int currentIntake, double avgCalories, double avgIntake)
         {
-            result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + "\n \n";
+            result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".";
 
-            Console.WriteLine("entered");
             if (currentIntake < goalIntake)
             {
-                Console.WriteLine("entered here");
-                result += "Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake);
+                result += "\n Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake) + ".";
             }
             else
             {
-                Console.WriteLine("entered here");
-                result += "Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to lose weight, then you should decrease your calorie intake by " + (avgIntake - goalIntake);
+                result += "\n Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to lose weight, then you should decrease your calorie intake by " + (avgIntake - goalIntake) + ".";
             }
             return result;
         }

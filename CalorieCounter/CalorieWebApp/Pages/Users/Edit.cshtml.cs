@@ -44,7 +44,7 @@ namespace CalorieWebApp.Pages.Users
         /// <summary>
         /// Performs a HTTP Post Call
         /// </summary>
-        public async void OnPost()
+        public async Task<IActionResult> OnPost()
         {
             user.Id = int.Parse(Request.Form["id"]);
             user.Name = Request.Form["name"];
@@ -75,6 +75,7 @@ namespace CalorieWebApp.Pages.Users
                         successMessage = "Successfully edited";
                 }
             }
+            return RedirectToPage("/Users/Index");
         }
     }
 }

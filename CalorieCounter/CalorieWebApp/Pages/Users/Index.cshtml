@@ -8,7 +8,7 @@
 <br>
 <h2>List of User Entries</h2>
 
-<a class="btn btn-primary btm-sm" href="/Users/Add">Add New Entry</a>
+<a class="btn btn-primary btm-sm" href="/Users/Create">Add New Entry</a>
 <a class="btn btn-primary btm-sm" href="/Users/Analysis">Analysis</a>
 
 <table class="table">
@@ -34,8 +34,8 @@
                 <td>@user.CurrentCalorieIntake</td>
 
                 <td>
-                    <a class="btn btn-primary btm-sm" href="/Calorie/Edit?id=@user.Id">Edit</a>
-                    <a class="btn btn-danger btm-sm" href="/Calorie/Delete?id=@user.Id">Delete</a>
+                    <a class="btn btn-primary btm-sm" href="/Users/Edit?id=@user.Id">Edit</a>
+                    <a class="btn btn-danger btm-sm" href="/Users/Delete?id=@user.Id">Delete</a>
                 </td>
             </tr>
         }
