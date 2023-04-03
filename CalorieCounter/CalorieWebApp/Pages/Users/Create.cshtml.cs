@@ -21,9 +21,8 @@ public class CreateModel : PageModel
     /// <summary>
     /// Performs HTTP Post
     /// </summary>
-    public async void OnPost()
+    public async Task<IActionResult> OnPost()
     {
-        user.Id = int.Parse(Request.Form["id"]);
         user.Name = Request.Form["name"];
         user.Age = int.Parse(Request.Form["age"]);
         user.Gender = Request.Form["gender"];
@@ -53,6 +52,7 @@ public class CreateModel : PageModel
                     successMessage = "Successfully added";
             }
         }
+        return RedirectToPage("/Users/Index");
     }
 }
 

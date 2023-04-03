@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -10,7 +10,7 @@ using CalorieCounterAPI.Data;
 using CalorieCounterAPI;
 
 /// <summary>
-/// Class to provide edit functionality to the Edit User Page
+/// Class to provide delete functionality to the Delete User Page
 /// </summary>
 
 namespace CalorieWebApp.Pages.Users
@@ -44,27 +44,24 @@ namespace CalorieWebApp.Pages.Users
         /// <summary>
         /// Performs a HTTP Post Call
         /// </summary>
-        public async void OnPost()
+        public async Task<IActionResult> OnPost()
         {
-
             string id = Request.Query["id"];
 
             using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5215");
+
+                var result = await client.DeleteAsync("Calorie/" + id);
+
+                if (!result.IsSuccessStatusCode)
+                    errorMessage = "Error deleting";
+                else
                 {
-                    client.BaseAddress = new Uri("http://localhost:5215");
-
-                    var result = await client.DeleteAsync("Calorie/"+ id);
-
-                    if (!result.IsSuccessStatusCode)
-                        errorMessage = "Error editing";
-                    else
-                    {
-                        successMessage = "Successfully deleted";
-                    }
-
-
+                    successMessage = "Successfully deleted";
                 }
-       
+            }
+            return RedirectToPage("/Users/Index");
         }
     }
 }

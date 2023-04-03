@@ -127,7 +127,8 @@ namespace CalorieCounterAPI.Controllers
         /// <returns>analysis</returns>
 		[HttpGet("/Analysis/{name}")]
 		[ProducesResponseType(200)]
-		[ProducesResponseType(400)]
+        [ProducesResponseType(200, Type = typeof(List<string>))]
+        [ProducesResponseType(400)]
 		public IActionResult GetAnalysis(string name)
 		{
              return Ok(_calorieRepository.GetAnalysis(name));
