@@ -5,6 +5,12 @@
 @{
 }
 
+<style>
+    body {
+        background-color: #c0d7fa;
+    }
+</style>
+
 <br>
 <h2>User Analysis</h2>
 
@@ -15,7 +21,7 @@
     <table>
         <tr>
             <td>Enter a user's name:</td>
-            <td><input type="text" name="name" value="@Model.user.Name"></td>
+            <td><input type="text" name="name" placeholder ="name" value="@Model.user.Name"></td>
         </tr>
     </table>
     <p></p>
@@ -31,11 +37,6 @@
         <div id="analysis"> @line </div>
     }
 }
-
-@*<script>function displayAlert() {
-            alert();
-    }*@
-@*</script>*@
 
 @if (@Model.errorMessage.Length > 0)
 {

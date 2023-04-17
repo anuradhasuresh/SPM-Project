@@ -21,7 +21,6 @@ public class AnalysisModel : PageModel
     public CalorieClass user = new();
     public List<string> DataAnalysis = new List<string>();
     public string errorMessage = "";
-    public string successMessage = "";
     /// <summary>
     /// Performs a HTTP Get call
     /// </summary>
