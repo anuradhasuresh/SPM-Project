@@ -29,14 +29,23 @@
     <input type="submit" value="Get Analysis" class="btn btn-primary" />
 </form>
 
-@if (@Model.DataAnalysis.Count > 0)
-{
-    <h2>Analysis</h2>
-    <br />
-    @foreach(var line in @Model.DataAnalysis){
-        <div id="analysis"> @line </div>
-    }
-}
+<table>
+    <thead>
+        <tr>
+            <th>AverageCalAnalysis</th>
+            <th>GoalIntakeAnalysis</th>
+            <th>BMIAnalysis</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@user.AverageCalAnalysis</td>
+            <td>@user.GoalIntakeAnalysis</td>
+            <td>@user.BMIAnalysis</td>
+        <tr>
+    </tbody>
+</table>
 
 @if (@Model.errorMessage.Length > 0)
 {

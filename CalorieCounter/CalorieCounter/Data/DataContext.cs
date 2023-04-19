@@ -37,6 +37,7 @@ namespace CalorieCounterAPI.Data
         }
         //public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<CalorieClass> Calorie { get; set; }
+        public DbSet<Goal_IntakeClass> Goal_Intake { get; set; }
     }
 
 }

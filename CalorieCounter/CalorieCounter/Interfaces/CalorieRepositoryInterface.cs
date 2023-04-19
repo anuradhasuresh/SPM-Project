@@ -13,16 +13,12 @@ namespace CalorieCounterAPI.Interfaces
 	public interface ICalorieRepository
     {
         ICollection<CalorieClass> GetItems();
-        //CalorieClass GetItem(int id);
-        //bool ItemExists(int id);
         bool CreateItem(CalorieClass item);
         bool UpdateItem(CalorieClass item);
         bool DeleteItem(int id);
         CalorieClass GetItem(int id);
-        //string GetAnalysis(string name);
-        List<string> GetAnalysis(string name);
+        Analysis GetAnalysis(string name);
         bool Save();
-        
 	}
 }
 
