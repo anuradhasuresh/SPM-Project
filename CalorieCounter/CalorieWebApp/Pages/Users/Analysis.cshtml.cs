@@ -44,7 +44,7 @@ public class AnalysisModel : PageModel
                 if (result.IsSuccessStatusCode)
                 {
                     var readTask = await result.Content.ReadAsStringAsync();
-                    analysis = JsonConvert.DeserializeObject<Analysis>>(readTask);
+                    analysis = JsonConvert.DeserializeObject<Analysis>(readTask);
                 }
                 else
                     errorMessage = "Error in fetching analysis";

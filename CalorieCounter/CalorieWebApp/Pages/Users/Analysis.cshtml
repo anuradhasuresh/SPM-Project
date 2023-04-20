@@ -9,6 +9,9 @@
     body {
         background-color: #c0d7fa;
     }
+    table, th, td, tr {
+        border: 1px solid;
+    }
 </style>
 
 <br>
@@ -32,17 +35,17 @@
 <table>
     <thead>
         <tr>
-            <th>AverageCalAnalysis</th>
-            <th>GoalIntakeAnalysis</th>
-            <th>BMIAnalysis</th>
+            <th>Average Calorie Analysis</th>
+            <th>Goal Intake Analysis</th>
+            <th>BMI Analysis</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>@user.AverageCalAnalysis</td>
-            <td>@user.GoalIntakeAnalysis</td>
-            <td>@user.BMIAnalysis</td>
+            <td>@Model.analysis.AverageCalAnalysis</td>
+            <td>@Model.analysis.GoalIntakeAnalysis</td>
+            <td>@Model.analysis.BMIAnalysis</td>
         <tr>
     </tbody>
 </table>

@@ -35,7 +35,7 @@ namespace CalorieCounterAPI.Data
             var connectionString = "server=localhost;port=3306;user=" + User + ";password=" + Password + ";database=Calorie_DB;";
             options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
-        //public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+        
         public DbSet<CalorieClass> Calorie { get; set; }
         public DbSet<Goal_IntakeClass> Goal_Intake { get; set; }
     }
