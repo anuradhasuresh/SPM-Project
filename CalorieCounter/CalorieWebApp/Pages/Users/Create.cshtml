@@ -32,23 +32,23 @@
             <input type="number" name="age" placeholder="age" value="@Model.user.Age">
         </li>
         <li style="margin: 10px 0">
+            <label for="name">Enter your current calorie intake: </label>
+            <input type="number" name="currentCalorieIntake" placeholder="current calorie intake for the day" value="@Model.user.CurrentCalorieIntake">
+        </li>
+        <li style="margin: 10px 0">
             <label for="gender">Enter your gender: </label>
             <select name="gender">
-                <option value="@Model.user.Gender">Male</option>
-                <option value="@Model.user.Gender">Female</option>
+                <option value="@Model.user.Gender">M</option>
+                <option value="@Model.user.Gender">F</option>
             </select>
         </li>
         <li style="margin: 10px 0">
             <label for="name">Enter your height: </label>
-            <input type="number" name="height" placeholder="height" value="@Model.user.Height">
+            <input type="number" name="height" placeholder="height in meters or feet" value="@Model.user.Height">
         </li>
         <li style="margin: 10px 0">
             <label for="name">Enter your weight: </label>
-            <input type="number" name="weight" placeholder="weight" value="@Model.user.Weight">
-        </li>
-        <li style="margin: 10px 0">
-            <label for="name">Enter your current calorie intake: </label>
-            <input type="number" name="currentCalorieIntake" placeholder="current calorie intake for the day" value="@Model.user.CurrentCalorieIntake">
+            <input type="number" name="weight" placeholder="weight in kilograms or pounds" value="@Model.user.Weight">
         </li>
     </ul>
     <p></p>

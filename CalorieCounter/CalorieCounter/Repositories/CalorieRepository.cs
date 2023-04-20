@@ -85,7 +85,7 @@ namespace CalorieCounterAPI.Repositories
         #endregion
         #region analysis method
         /// <summary>
-        /// Performs analysis of average calorie intake, intake compared to goal intake and calculates the BMI - given a name
+        /// Performs analysis of average calorie intake compared to other people, average intake compared to goal intake and calculates the BMI - given a name
         /// </summary>
         /// <param name="name"></param>
         /// <returns>an analysis object</returns>
@@ -100,10 +100,6 @@ namespace CalorieCounterAPI.Repositories
                 .Average(x => x.CurrentCalorieIntake);
             double avgCalories = items
                 .Average(x => x.CurrentCalorieIntake);
-            int currentIntake = items
-                .Where(temp => temp.Name.ToLower() == name.ToLower())
-                .Select(x => x.CurrentCalorieIntake)
-                .FirstOrDefault();
             string gender = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Select(x => x.Gender)
@@ -111,6 +107,14 @@ namespace CalorieCounterAPI.Repositories
             int age = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Select(x => x.Age)
+                .FirstOrDefault();
+            int height = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Height)
+                .FirstOrDefault();
+            int weight = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Weight)
                 .FirstOrDefault();
 
             int goalIntake = _context.Goal_Intake
@@ -120,8 +124,9 @@ namespace CalorieCounterAPI.Repositories
 
             string avgCalResult = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".\n";
             string goalIntakeResult = resultMessage(goalIntake, avgIntake);
-            string bmiResult = "";
+            string bmiResult = "Your Body Mass Index (BMI) is: " + Math.Round(weight / (Math.Pow(height, 2)));
 
+            Console.WriteLine(bmiResult);
             analysis.AverageCalAnalysis = avgCalResult;
             analysis.GoalIntakeAnalysis = goalIntakeResult;
             analysis.BMIAnalysis = bmiResult;
