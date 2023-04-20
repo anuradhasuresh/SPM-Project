@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CalorieCounterAPI;
 using CalorieCounterAPI.Controllers;
 using CalorieCounterAPI.Data;
@@ -111,6 +111,16 @@ namespace CalorieCounterAPI.Repositories
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Select(x => x.Age)
                 .FirstOrDefault();
+            double weight =  items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Weight)
+                .FirstOrDefault();
+            double height =  items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Height)
+                .FirstOrDefault();
+            
+            double bmi = weight / (height * height);
 
             int goalIntake;
             string result = String.Empty;
@@ -123,13 +133,13 @@ namespace CalorieCounterAPI.Repositories
                     case "M":
                         {
                             goalIntake = 1800;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                     case "F":
                         {
                             goalIntake = 1500;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                 }
@@ -141,13 +151,13 @@ namespace CalorieCounterAPI.Repositories
                     case "M":
                         {
                             goalIntake = 2200;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                     case "F":
                         {
                             goalIntake = 1800;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                 }
@@ -159,13 +169,13 @@ namespace CalorieCounterAPI.Repositories
                     case "M":
                         {
                             goalIntake = 2500;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                     case "F":
                         {
                             goalIntake = 2000;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                 }
@@ -177,13 +187,13 @@ namespace CalorieCounterAPI.Repositories
                     case "M":
                         {
                             goalIntake = 2300;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                     case "F":
                         {
                             goalIntake = 1800;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                 }
@@ -195,13 +205,13 @@ namespace CalorieCounterAPI.Repositories
                     case "M":
                         {
                             goalIntake = 2100;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                     case "F":
                         {
                             goalIntake = 1600;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
+                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake, bmi);
                             break;
                         }
                 }
@@ -220,11 +230,13 @@ namespace CalorieCounterAPI.Repositories
         /// <param name="avgCalories"></param>
         /// <param name="avg"></param>
         /// <returns>message with analysis text</returns>
-        public string printMessage(string result, int goalIntake, int currentIntake, double avgCalories, double avgIntake)
+        public string printMessage(string result, int goalIntake, int currentIntake, double avgCalories, double avgIntake, double bmi)
         {
 
             result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".\n";
             
+            result += "\n The Estimate BMI according to the given height and weight is : " + Math.Round(bmi, 2) + ".\n";
+
             if (currentIntake < goalIntake)
             {
                 result += "\n Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake) + ".";

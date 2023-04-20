@@ -1,4 +1,4 @@
-﻿namespace CalorieCounterAPI.Models;
+namespace CalorieCounterAPI.Models;
 
 /// <summary>
 /// Analysis Class with 3 fields - AverageAnalysis, GoalAnalysis and WeightAnalysis
@@ -10,4 +10,8 @@ public class Analysis
     public String GoalAnalysis { get; set; } = String.Empty;
 
     public String WeightAnalysis { get; set; } = String.Empty;
+    
+    public string BMI_Analysis {get; set; } = String.Empty;	
+
+
 }
