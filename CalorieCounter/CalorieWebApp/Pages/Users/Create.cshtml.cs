@@ -30,7 +30,7 @@ public class CreateModel : PageModel
         user.Weight = int.Parse(Request.Form["weight"]);
         user.CurrentCalorieIntake = int.Parse(Request.Form["currentCalorieIntake"]);
 
-        Console.WriteLine(user.Name, user.Age, user.CurrentCalorieIntake, user.Gender, user.Height, user.Weight);
+        // Console.WriteLine(user.Name, user.Age, user.CurrentCalorieIntake, user.Gender, user.Height, user.Weight);
         if (user.Name.Length == 0 || user.Age == 0 || user.Gender.Length == 0 || user.CurrentCalorieIntake == 0 || user.Height == 0 || user.Weight == 0)
             errorMessage = "Please enter your details";
         else
@@ -41,22 +41,16 @@ public class CreateModel : PageModel
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5215");
-
                 var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-
                 var result = await client.PostAsync("Calorie", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
-
                 Console.WriteLine(resultContent);
-
                 if (!result.IsSuccessStatusCode)
                     errorMessage = "Error adding";
                 else
-
                     successMessage = "Successfully added";
             }
         }
         return RedirectToPage("/Users/Index");
     }
 }
-

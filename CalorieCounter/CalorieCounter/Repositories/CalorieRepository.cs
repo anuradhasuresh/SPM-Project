@@ -118,15 +118,14 @@ namespace CalorieCounterAPI.Repositories
                 .FirstOrDefault();
 
             int goalIntake = _context.Goal_Intake
-                .Where(a => a.Gender == gender && (a.minAge < age && age < a.maxAge))
+                .Where(a => a.Gender == gender && (a.minAge <= age && age <= a.maxAge))
                 .Select(x => x.goal_Intake)
                 .FirstOrDefault();
 
             string avgCalResult = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".\n";
             string goalIntakeResult = resultMessage(goalIntake, avgIntake);
-            string bmiResult = "Your Body Mass Index (BMI) is: " + Math.Round(weight / (Math.Pow(height, 2)));
+            string bmiResult = "Your Body Mass Index (BMI) is: " + Math.Round(weight / (Math.Pow(height * 0.01, 2)));
 
-            Console.WriteLine(bmiResult);
             analysis.AverageCalAnalysis = avgCalResult;
             analysis.GoalIntakeAnalysis = goalIntakeResult;
             analysis.BMIAnalysis = bmiResult;
