@@ -9,6 +9,13 @@
     body {
         background-color: #c0d7fa;
     }
+    li {
+        margin: 10px 0;
+    }
+    ul {
+        list-style-type: none;
+    }
+
 </style>
 
 <a class="btn btn-primary btm-sm" href="/Users/Index">Display All User Entries</a>
@@ -22,33 +29,33 @@
     <div>Model.errorMessage</div>
 }
 <form method="POST" style="display: block">
-    <ul style="list-style-type: none">
-        <li style="margin: 10px 0">
+    <ul>
+        <li>
             <label for="name">Enter your name: </label>
             <input type="text" name="name" placeholder="name" value="@Model.user.Name">
         </li>
-        <li style="margin: 10px 0">
+        <li>
             <label for="age">Enter your age: </label>
             <input type="number" name="age" placeholder="age" value="@Model.user.Age">
         </li>
-        <li style="margin: 10px 0">
+        <li>
             <label for="name">Enter your current calorie intake: </label>
             <input type="number" name="currentCalorieIntake" placeholder="current calorie intake for the day" value="@Model.user.CurrentCalorieIntake">
         </li>
-        <li style="margin: 10px 0">
+        <li>
             <label for="gender">Enter your gender: </label>
-            <select name="gender">
-                <option value="@Model.user.Gender">M</option>
-                <option value="@Model.user.Gender">F</option>
+            <select name="gender" value="@Model.user.Gender">
+                <option>M</option>
+                <option>F</option>
             </select>
         </li>
-        <li style="margin: 10px 0">
+        <li>
             <label for="name">Enter your height: </label>
-            <input type="number" name="height" placeholder="height in meters or feet" value="@Model.user.Height">
+            <input type="number" name="height" placeholder="height in centimeters" value="@Model.user.Height">
         </li>
-        <li style="margin: 10px 0">
+        <li>
             <label for="name">Enter your weight: </label>
-            <input type="number" name="weight" placeholder="weight in kilograms or pounds" value="@Model.user.Weight">
+            <input type="number" name="weight" placeholder="weight in kilograms" value="@Model.user.Weight">
         </li>
     </ul>
     <p></p>

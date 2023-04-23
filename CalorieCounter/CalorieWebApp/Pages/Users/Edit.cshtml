@@ -35,7 +35,12 @@
         </tr>
         <tr>
             <td>Gender</td>
-            <td><input type="text" name="gender" placeholder="gender (M or F)" value="@Model.user.Gender"></td>
+            <td>
+                <select name="gender" value="@Model.user.Gender">
+                    <option>M</option>
+                    <option>F</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Height</td>
@@ -43,7 +48,7 @@
         </tr>
         <tr>
             <td>Weight</td>
-            <td><input type="text" name="gender" placeholder="weight" value="@Model.user.Weight"></td>
+            <td><input type="text" name="weight" placeholder="weight" value="@Model.user.Weight"></td>
         </tr>
         <tr>
             <td>Current Calorie Intake</td>
