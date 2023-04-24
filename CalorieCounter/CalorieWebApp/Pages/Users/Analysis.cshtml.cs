@@ -23,7 +23,7 @@ public class AnalysisModel : PageModel
     
     public string errorMessage = "";
     /// <summary>
-    /// Performs a HTTP Get call
+    /// Performs a HTTP Post call
     /// </summary>
     public async void OnPost()
     {

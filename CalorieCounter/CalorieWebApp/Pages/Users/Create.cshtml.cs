@@ -20,7 +20,7 @@ namespace CalorieWebApp.Pages.Users
         public string errorMessage = "";
         public string successMessage = "";
         /// <summary>
-        /// Performs HTTP Post
+        /// Performs a HTTP Post Call
         /// </summary>
         public async Task<IActionResult> OnPost()
         {

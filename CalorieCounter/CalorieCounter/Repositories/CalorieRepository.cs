@@ -12,6 +12,9 @@ using System.Reflection;
 
 namespace CalorieCounterAPI.Repositories
 {
+    /// <summary>
+    /// Repository class to implement methods in the interface class
+    /// </summary>
 	public class CalorieRepository : ICalorieRepository
 	{
         private DataContext _context;
