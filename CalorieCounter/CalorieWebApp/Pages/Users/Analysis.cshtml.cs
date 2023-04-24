@@ -19,11 +19,12 @@ namespace CalorieWebApp.Pages.Users;
 public class AnalysisModel : PageModel
 {
     public CalorieClass user = new();
-    public List<string> DataAnalysis = new List<string>();
+
+    public Analysis analysis = new();
+    
     public string errorMessage = "";
-    public string successMessage = "";
     /// <summary>
-    /// Performs a HTTP Get call
+    /// Performs a HTTP Post call
     /// </summary>
     public async void OnPost()
     {
@@ -44,11 +45,12 @@ public class AnalysisModel : PageModel
                 if (result.IsSuccessStatusCode)
                 {
                     var readTask = await result.Content.ReadAsStringAsync();
-                    DataAnalysis = JsonConvert.DeserializeObject<List<string>>(readTask);
+                    analysis = JsonConvert.DeserializeObject<Analysis>(readTask);
                 }
                 else
                     errorMessage = "Error in fetching analysis";
             }
         }
     }
+}
 

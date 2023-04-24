@@ -50,14 +50,17 @@ namespace CalorieWebApp.Pages.Users
             user.Name = Request.Form["name"];
             user.Age = int.Parse(Request.Form["age"]);
             user.Gender = Request.Form["gender"];
+            user.Height = int.Parse(Request.Form["height"]);
+            user.Weight = int.Parse(Request.Form["weight"]);
             user.CurrentCalorieIntake = int.Parse(Request.Form["currentCalorieIntake"]);
 
-            if (user.Name.Length == 0 || user.Age == 0 || user.Gender.Length == 0 || user.CurrentCalorieIntake == 0)
+            if (user.Name.Length == 0 || user.Age == 0 || user.Gender == ""|| user.CurrentCalorieIntake == 0 || user.Height == 0 || user.Weight == 0)
                 errorMessage = "Please enter your details";
             else
             {
                 var opt = new JsonSerializerOptions() { WriteIndented = true };
                 string json = System.Text.Json.JsonSerializer.Serialize<CalorieClass>(user, opt);
+                Console.WriteLine(json);
 
                 using (var client = new HttpClient())
                 {

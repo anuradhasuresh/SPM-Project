@@ -8,9 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.X86;
+using System.Reflection;
 
 namespace CalorieCounterAPI.Repositories
 {
+    /// <summary>
+    /// Repository class to implement methods in the interface class
+    /// </summary>
 	public class CalorieRepository : ICalorieRepository
 	{
         private DataContext _context;
@@ -84,25 +88,20 @@ namespace CalorieCounterAPI.Repositories
         #endregion
         #region analysis method
         /// <summary>
-        /// Function to perform analysis
+        /// Performs analysis of average calorie intake compared to other people, average intake compared to goal intake and calculates the BMI - given a name
         /// </summary>
         /// <param name="name"></param>
-        /// <returns>Message with analysis</returns>
-        public List<string> GetAnalysis(string name)
+        /// <returns>an analysis object</returns>
+        public Analysis GetAnalysis(string name)
         {
+            Analysis analysis = new Analysis();
             ICollection<CalorieClass> items = _context.Calorie.ToList();
-
-            var dataAnalysis = new List<string>();
             // variables to get values of average, total average, current intake, gender, age, goal/ standard intake and result message
             double avgIntake = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Average(x => x.CurrentCalorieIntake);
             double avgCalories = items
                 .Average(x => x.CurrentCalorieIntake);
-            int currentIntake = items
-                .Where(temp => temp.Name.ToLower() == name.ToLower())
-                .Select(x => x.CurrentCalorieIntake)
-                .FirstOrDefault();
             string gender = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Select(x => x.Gender)
@@ -111,130 +110,45 @@ namespace CalorieCounterAPI.Repositories
                 .Where(temp => temp.Name.ToLower() == name.ToLower())
                 .Select(x => x.Age)
                 .FirstOrDefault();
+            int height = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Height)
+                .FirstOrDefault();
+            int weight = items
+                .Where(temp => temp.Name.ToLower() == name.ToLower())
+                .Select(x => x.Weight)
+                .FirstOrDefault();
 
-            int goalIntake;
-            string result = String.Empty;
+            int goalIntake = _context.Goal_Intake
+                .Where(a => a.Gender == gender && (a.minAge <= age && age <= a.maxAge))
+                .Select(x => x.goal_Intake)
+                .FirstOrDefault();
 
-            // if and switch conditions to emulate different age groups and gender of people
-            if (Enumerable.Range(9, 13).Contains(age))
-            {
-                switch (gender)
-                {
-                    case "M":
-                        {
-                            goalIntake = 1800;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                    case "F":
-                        {
-                            goalIntake = 1500;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                }
-            }
-            else if (Enumerable.Range(14, 18).Contains(age))
-            {
-                switch (gender)
-                {
-                    case "M":
-                        {
-                            goalIntake = 2200;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                    case "F":
-                        {
-                            goalIntake = 1800;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                }
-            }
-            else if (Enumerable.Range(19, 30).Contains(age))
-            {
-                switch (gender)
-                {
-                    case "M":
-                        {
-                            goalIntake = 2500;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                    case "F":
-                        {
-                            goalIntake = 2000;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                }
-            }
-            else if (Enumerable.Range(31, 50).Contains(age))
-            {
-                switch (gender)
-                {
-                    case "M":
-                        {
-                            goalIntake = 2300;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                    case "F":
-                        {
-                            goalIntake = 1800;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                }
-            }
-            else
-            {
-                switch (gender)
-                {
-                    case "M":
-                        {
-                            goalIntake = 2100;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                    case "F":
-                        {
-                            goalIntake = 1600;
-                            result += printMessage(result, goalIntake, currentIntake, avgCalories, avgIntake);
-                            break;
-                        }
-                }
-            }
-            dataAnalysis.AddRange(result.Split('\n'));
-            return dataAnalysis;
+            string avgCalResult = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".\n";
+            string goalIntakeResult = resultMessage(goalIntake, avgIntake);
+            string bmiResult = "Your Body Mass Index (BMI) is: " + Math.Round(weight / (Math.Pow(height * 0.01, 2)));
+
+            analysis.AverageCalAnalysis = avgCalResult;
+            analysis.GoalIntakeAnalysis = goalIntakeResult;
+            analysis.BMIAnalysis = bmiResult;
+
+            return analysis;
         }
         #endregion
         #region helper methods
         /// <summary>
         /// helper method to print the result message
         /// </summary>
-        /// <param name="result"></param>
         /// <param name="goalIntake"></param>
-        /// <param name="currentIntake"></param>
-        /// <param name="avgCalories"></param>
-        /// <param name="avg"></param>
-        /// <returns>message with analysis text</returns>
-        public string printMessage(string result, int goalIntake, int currentIntake, double avgCalories, double avgIntake)
+        /// <param name="avgIntake"></param>
+        /// <returns>message with calorie intake analysis text</returns>
+        public string resultMessage(int goalIntake, double avgIntake)
         {
+            if (avgIntake < goalIntake)
+                return "Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake) + ".";
 
-            result = "The average number of calories entered on this website is: " + Math.Round(avgCalories, 2) + ", while the average number of calories you have entered until now is: " + Math.Round(avgIntake, 2) + ".\n";
-            
-            if (currentIntake < goalIntake)
-            {
-                result += "\n Your current calorie intake is " + (goalIntake - avgIntake) + " calories less than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to gain weight, then you should increase your calorie intake by " + (goalIntake - avgIntake) + ".";
-            }
             else
-            {
-                result += "\n Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender." + "\n" + "If you're looking to lose weight, then you should decrease your calorie intake by " + (avgIntake - goalIntake) + ".";
-            }
-            
-            return result;
+                return "Your current calorie intake is " + (avgIntake - goalIntake) + " calories more than your goal intake of " + goalIntake + " for a sedentary lifestyle for your age group and gender. If you're looking to lose weight, then you should decrease your calorie intake by " + (avgIntake - goalIntake) + ".";
         }
         #endregion
     }
