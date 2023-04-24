@@ -96,7 +96,6 @@ namespace CalorieCounterAPI.Repositories
         {
             Analysis analysis = new Analysis();
             ICollection<CalorieClass> items = _context.Calorie.ToList();
-
             // variables to get values of average, total average, current intake, gender, age, goal/ standard intake and result message
             double avgIntake = items
                 .Where(temp => temp.Name.ToLower() == name.ToLower())

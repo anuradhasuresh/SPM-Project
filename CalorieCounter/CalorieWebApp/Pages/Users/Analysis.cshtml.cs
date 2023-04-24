@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -19,6 +19,7 @@ namespace CalorieWebApp.Pages.Users;
 public class AnalysisModel : PageModel
 {
     public CalorieClass user = new();
+
     public Analysis analysis = new();
     
     public string errorMessage = "";
